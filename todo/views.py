@@ -4,9 +4,21 @@ import json
 from .models import Todo
 
 
-def todolist(requests):
+# 1.新增todo.html
+# 2.將todo傳出到{{todo}}
+def view_todo(request, id):
+    todo = None
+    try:
+        todo = Todo.objects.get(id=id)
+        # context = {"id": todo.id, "title": todo.title}
+    except Exception as e:
+        print(e)
+    return render(request, "todo/view-todo.html", {"todo": todo})
+
+
+def todolist(request):
     todos = Todo.objects.all()
-    return render(requests, "todo/todolist.html", {"todos": todos})
+    return render(request, "todo/todolist.html", {"todos": todos})
 
 
 # Create your views here.

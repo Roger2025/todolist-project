@@ -13,25 +13,21 @@
             text-align: center;
             margin: 0 auto;
         }
-
-        h1 {
-            text-align: center;
-        }
     </style>
 </head>
 
 <body>
-    <h1>Todolist</h1>
-    {% for todo in todos %}
+    <h1>Todo</h1>
+    {% if todo %}
     <div class="todo">
         <h4>{{todo.created}}</h4>
-        <a href="{% url 'viewtodo' todo.id %}">
-            <h3>{{todo.title}}</h3>
-        </a>
+        <h3>{{todo.title}}</h3>
         <p>{{todo.text}}</p>
         <u>{{todo.important}}</u>
     </div>
-    {% endfor %}
+    {% else %}
+    <h2>無此代辦事項</h2>
+    {% endif %}
 </body>
 
 </html>
