@@ -17,11 +17,17 @@
         h1 {
             text-align: center;
         }
+
+        a {
+            text-align: center;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
 <body>
     <h1>Todolist</h1>
+    <a href="{% url 'create-todo' %}">表單連結</a>
     {% for todo in todos %}
     <div class="todo">
         <h4>{{todo.created}}</h4>
