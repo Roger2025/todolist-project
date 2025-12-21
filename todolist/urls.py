@@ -25,4 +25,5 @@ urlpatterns = [
     path("", views.todolist, name="todolist"),
     path("books/", views.books, name="books"),
     path("admin/", admin.site.urls),
+    path("delete-todo/<int:id>", views.delete_todo, name="delete-todo"),
 ]
