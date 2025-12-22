@@ -26,7 +26,12 @@
     <a href="{% url 'user-login' %}">登入</a>
     <a href="{% url 'user-register' %}">註冊</a>
     {% endif %}
+
     <h1>Todo List</h1>
+
+    {% if not todos %}
+    <h3>無代辦事項，請先新增或登入</h3>
+    {% endif %}
 
     {% for todo in todos %}
     <div class="todo">

@@ -48,7 +48,7 @@ def user_register(request):
             else:
                 User.objects.create_user(username=username, password=password1).save()
                 message = "使用者註冊成功!"
-                return redirect("login")
+                return redirect("user-login")
 
             # 使用者名稱已經存在
 
