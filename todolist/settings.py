@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
+# import pymysql
+
+# pip install mysqlclient
+# pymysql.install_as_MySQLdb()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-coqo%-@b6b7+_oasqtbs*2cm5v61yfu(v(wq7l+=t0dh!@b1(h"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["todolist-project-7gq0.onrender.com"]
 
 
 # Application definition
@@ -78,6 +83,17 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "defaultdb",
+        "USER": "avnadmin",
+        "PASSWORD": "AVNS_ojhQfs7-Vj8xpls8FfX",
+        "HOST": "mysql-12b99084-pm25.c.aivencloud.com",
+        "PORT": 21697,
     }
 }
 

@@ -28,6 +28,8 @@ from todo.models import Todo <==引用資料表
 2.Todo.objects.get(id=2) <= 不存在會報錯
 3.Todo.objects.filter(id=2) <= 不存在不會報錯(為空串列) 
 
+8.pip freeze > requirements.txt
+
 
 
 
