@@ -1,54 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首頁</title>
-    <style>
-        .todo {
-            background-color: blanchedalmond;
-            border-radius: 10px;
-            width: 60%;
-            text-align: center;
-            margin: 20px auto;
-        }
-    </style>
-</head>
+{% block title %}
+<title>代辦事項</title>
+{% endblock %}
 
-<body>
+{% block css %}
+<style>
+    .todo {
+        background-color: blanchedalmond;
+        border-radius: 10px;
+        width: 60%;
+        text-align: center;
+        margin: 20px auto;
+    }
+</style>
+{% endblock %}
 
-    {% if user.is_authenticated %}
-    使用者:{{user.username}}
-    <a href="{% url 'user-logout' %}">登出</a>
-    <a href="{% url 'create-todo' %}">建立代辦事項</a>
-    {% else %}
-    <a href="{% url 'user-login' %}">登入</a>
-    <a href="{% url 'user-register' %}">註冊</a>
+{% block content %}
+<h1>Todo List</h1>
+
+{% if not todos %}
+<h3>無代辦事項，請先新增或登入</h3>
+{% endif %}
+
+{% for todo in todos %}
+<div class="todo">
+    <a href="{% url 'delete-todo' todo.id%}" onclick="return confirm('是否刪除?')">刪除</a>
+    <h4>{{todo.created}}</h4>
+    <a href="{% url 'viewtodo' todo.id %}">
+        <h3>{{todo.title}}</h3>
+    </a>
+    <p>{{todo.text}}</p>
+    <u>{{todo.important}}</u>
+    {% if todo.date_completed %}
+    <p>
+        完成時間:<u>{{todo.date_completed}}</u>
+    </p>
     {% endif %}
-
-    <h1>Todo List</h1>
-
-    {% if not todos %}
-    <h3>無代辦事項，請先新增或登入</h3>
-    {% endif %}
-
-    {% for todo in todos %}
-    <div class="todo">
-        <a href="{% url 'delete-todo' todo.id%}" onclick="return confirm('是否刪除?')">刪除</a>
-        <h4>{{todo.created}}</h4>
-        <a href="{% url 'viewtodo' todo.id %}">
-            <h3>{{todo.title}}</h3>
-        </a>
-        <p>{{todo.text}}</p>
-        <u>{{todo.important}}</u>
-        {% if todo.date_completed %}
-        <p>
-            完成時間:<u>{{todo.date_completed}}</u>
-        </p>
-        {% endif %}
-    </div>
-    {% endfor %}
-</body>
-
-</html>
+</div>
+{% endfor %}
+{% endblock %}
