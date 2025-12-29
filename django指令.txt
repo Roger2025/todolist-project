@@ -30,6 +30,8 @@ from todo.models import Todo <==引用資料表
 
 8.pip freeze > requirements.txt
 
+9.python manage.py collectstatic
+
 
 
 
